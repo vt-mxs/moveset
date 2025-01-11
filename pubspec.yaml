@@ -35,10 +35,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.4
+  flutter_launcher_icons: ^0.14.2
 
 flutter_native_splash:
   image: "assets/moveset-logo.png"
   color: "#2C2C2C"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/moveset-logo.png"
+  min_sdk_android: 24
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/moveset-logo.png"
 
 dev_dependencies:
   flutter_test:
