@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+import 'package:moveset/core/constants/app_colors.dart';
+import 'package:moveset/core/constants/assets_paths.dart';
+import 'package:moveset/core/widgets/welcome_button.dart';
+
+class WelcomeScreen extends StatelessWidget{
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              const Color.fromARGB(255, 74, 77, 82),
+              Colors.black87
+            ]
+          ),
+        ),
+        
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 60),
+              child: Image.asset(
+                AssetsPaths.welcomeImage,
+                width: 270,
+                height: 270
+              ),
+            ),
+            
+            const SizedBox(height: 30),
+
+            Text(
+              'Um homem sem disciplina se torna somente mais um',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                color: AppColors.mainIceWhite
+              )
+            ),
+            
+            const SizedBox(height: 43),
+
+            WelcomeButton(
+              text: 'LOGIN',
+              textStyle: TextStyle(
+                color: AppColors.mainIceWhite,
+                fontSize: 18,
+                fontWeight: FontWeight.bold
+              ),
+              onPressed: () =>{print('OI')},
+              border: Border.all(color: AppColors.mainShowCaseBlue),
+            ),
+            
+            const SizedBox(height: 25),
+
+            WelcomeButton(
+              text: 'REGISTRAR-SE',
+              textStyle: TextStyle(
+                color: AppColors.mainIceWhite,
+                fontSize: 18,
+                fontWeight: FontWeight.bold
+              ),
+              onPressed: () =>{},
+              color: AppColors.mainShowCaseBlue,
+            ),
+          ]
+        ),
+
+      ),
+    );
+  }
+}
