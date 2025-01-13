@@ -12,6 +12,7 @@ class WelcomeScreen extends StatelessWidget{
       body: Container(
         height: double.infinity,
         width: double.infinity,
+
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -24,14 +25,13 @@ class WelcomeScreen extends StatelessWidget{
         ),
         
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 60),
-              child: Image.asset(
-                AssetsPaths.welcomeImage,
-                width: 270,
-                height: 270
-              ),
+            Image.asset(
+              AssetsPaths.welcomeImage,
+              width: 270,
+              height: 270
             ),
             
             const SizedBox(height: 30),
@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget{
               'Um homem sem disciplina se torna somente mais um',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 color: AppColors.mainIceWhite
               )
             ),
@@ -54,11 +54,11 @@ class WelcomeScreen extends StatelessWidget{
                 fontSize: 18,
                 fontWeight: FontWeight.bold
               ),
-              onPressed: () =>{print('OI')},
+              onPressed: () => {print('OI')},
               border: Border.all(color: AppColors.mainShowCaseBlue),
             ),
             
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
 
             WelcomeButton(
               text: 'REGISTRAR-SE',
