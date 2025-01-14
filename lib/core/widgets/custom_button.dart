@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_colors.dart';
 
-class WelcomeButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   //final Widget child;
   final String text;
   final VoidCallback onPressed;
@@ -14,7 +14,7 @@ class WelcomeButton extends StatelessWidget {
   final BoxConstraints? constraints;
   final TextStyle textStyle;
 
-  const WelcomeButton({
+  const CustomButton({
     required this.text,
     super.key,
     required this.onPressed,

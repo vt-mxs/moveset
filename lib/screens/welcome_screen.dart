@@ -3,7 +3,7 @@ import 'package:moveset/core/constants/app_colors.dart';
 import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/constants/assets_paths.dart';
 import 'package:moveset/core/utils/auth_screen_decoration.dart';
-import 'package:moveset/core/widgets/welcome_button.dart';
+import 'package:moveset/core/widgets/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget{
   const WelcomeScreen({super.key});
@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget{
             
             const SizedBox(height: 43),
 
-            WelcomeButton(
+            CustomButton(
               text: 'LOGIN',
               textStyle: TextStyle(
                 color: AppColors.mainIceWhite,
@@ -53,7 +53,7 @@ class WelcomeScreen extends StatelessWidget{
             
             const SizedBox(height: 30),
 
-            WelcomeButton(
+            CustomButton(
               text: 'REGISTRAR-SE',
               textStyle: TextStyle(
                 color: AppColors.mainIceWhite,
