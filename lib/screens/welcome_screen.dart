@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_colors.dart';
+import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/constants/assets_paths.dart';
+import 'package:moveset/core/utils/auth_screen_decoration.dart';
 import 'package:moveset/core/widgets/welcome_button.dart';
 
 class WelcomeScreen extends StatelessWidget{
@@ -13,16 +15,7 @@ class WelcomeScreen extends StatelessWidget{
         height: double.infinity,
         width: double.infinity,
 
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              const Color.fromARGB(255, 74, 77, 82),
-              Colors.black87
-            ]
-          ),
-        ),
+        decoration: AuthScreenDecoration.defaultBackground,
         
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -54,7 +47,7 @@ class WelcomeScreen extends StatelessWidget{
                 fontSize: 18,
                 fontWeight: FontWeight.bold
               ),
-              onPressed: () => {print('OI')},
+              onPressed: () => Navigator.of(context).pushNamed(AppRoutes.login),
               border: Border.all(color: AppColors.mainShowCaseBlue),
             ),
             
@@ -67,7 +60,7 @@ class WelcomeScreen extends StatelessWidget{
                 fontSize: 18,
                 fontWeight: FontWeight.bold
               ),
-              onPressed: () =>{},
+              onPressed: () => Navigator.pushNamed(context, AppRoutes.register),
               color: AppColors.mainShowCaseBlue,
             ),
           ]
