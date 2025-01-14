@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_colors.dart';
 
-class CustomButton extends StatelessWidget {
+class ResponsiveButton extends StatelessWidget {
   //final Widget child;
   final String text;
   final VoidCallback onPressed;
@@ -14,12 +14,12 @@ class CustomButton extends StatelessWidget {
   final BoxConstraints? constraints;
   final TextStyle textStyle;
 
-  const CustomButton({
+  const ResponsiveButton({
     required this.text,
     super.key,
     required this.onPressed,
-    this.width = 300,
-    this.height = 65,
+    this.width = 70,
+    this.height = 7,
     this.color,
     this.borderRadius = 30,
     this.border,
@@ -34,12 +34,15 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    
     return GestureDetector(
       onTap: onPressed,
 
       child: Container(
-        width: width,
-        height: height,
+        width: screenWidth * (width / 100),
+        height: screenHeight * (height / 100),
         alignment: Alignment.center,
 
         decoration: BoxDecoration(
