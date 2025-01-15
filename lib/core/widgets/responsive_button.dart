@@ -13,12 +13,13 @@ class ResponsiveButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final BoxConstraints? constraints;
   final TextStyle textStyle;
+  final List<BoxShadow>? shadow;
 
   const ResponsiveButton({
     required this.text,
     super.key,
     required this.onPressed,
-    this.width = 70,
+    this.width = 73,
     this.height = 7,
     this.color,
     this.borderRadius = 30,
@@ -29,7 +30,8 @@ class ResponsiveButton extends StatelessWidget {
       fontWeight: FontWeight.bold
     ),
     this.constraints,
-    this.padding = const EdgeInsets.only(top: 19)
+    this.padding = const EdgeInsets.only(top: 19),
+    this.shadow
   });
 
   @override
@@ -48,7 +50,8 @@ class ResponsiveButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(borderRadius),
-          border: border
+          border: border,
+          boxShadow: shadow,
         ),
 
         child: Text(
