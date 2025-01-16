@@ -13,9 +13,6 @@ class LoginScreen extends StatelessWidget {
     
     return AuthScreen(
       title: 'Olá\nBem vindo de volta!',
-      buttonText: 'LOGAR',
-      onSubmit: () =>{},
-
       inputs: [
         CustomInputField(label: 'Email'),
                 
@@ -23,6 +20,9 @@ class LoginScreen extends StatelessWidget {
   
         CustomInputField(label: 'Senha'),
       ],
+      
+      buttonText: 'LOGAR',
+      onSubmit: () =>{},
 
       footerWidgets: [
         Align(
