@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_routes.dart';
-import 'package:moveset/screens/login_screen.dart';
-import 'package:moveset/screens/register_screen.dart';
-import 'package:moveset/screens/welcome_screen.dart';
+import 'package:moveset/screens/auth/login_screen.dart';
+import 'package:moveset/screens/auth/register_screen.dart';
+import 'package:moveset/screens/auth/welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
