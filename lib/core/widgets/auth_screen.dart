@@ -10,7 +10,6 @@ class AuthScreen extends StatelessWidget {
   final String buttonText;
   final VoidCallback onSubmit;
   final List<Widget> footerWidgets;
-  
 
   const AuthScreen({
     super.key,

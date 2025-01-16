@@ -18,9 +18,9 @@ class LoginScreen extends StatelessWidget {
                 
         SizedBox(height: screenHeight * 0.03),
   
-        CustomInputField(label: 'Senha'),
+        CustomInputField(label: 'Senha', isPassword: true),
       ],
-      
+
       buttonText: 'LOGAR',
       onSubmit: () =>{},
 
