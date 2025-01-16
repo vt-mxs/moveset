@@ -15,7 +15,7 @@ class CustomInputField extends StatefulWidget {
   });
 
   @override
-  _CustomInputFieldState createState() => _CustomInputFieldState();
+  State<CustomInputField> createState() => _CustomInputFieldState();
 }
 
 class _CustomInputFieldState extends State<CustomInputField> {
