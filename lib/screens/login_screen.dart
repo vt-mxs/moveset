@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
               ),
 
               width: double.infinity,
-              height: screenHeight * 0.7,
+              height: screenHeight * 0.69,
               //constraints: BoxConstraints(minHeight: screenHeight * 0.6),
 
               child: SingleChildScrollView(
@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       CustomInputField(label: 'Email'),
                 
-                      SizedBox(height: screenHeight * 0.06),
+                      SizedBox(height: screenHeight * 0.03),
                 
                       CustomInputField(label: 'Senha'),
                 
@@ -115,5 +115,6 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
     );
+  
   }
 }
