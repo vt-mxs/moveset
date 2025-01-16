@@ -8,13 +8,15 @@ class AuthScreen extends StatelessWidget {
   final String title;
   final List<Widget> inputs;
   final String buttonText;
+  final VoidCallback onSubmit;
 
   const AuthScreen({
     super.key,
     required
     this.title,
     required this.inputs,
-    required this.buttonText
+    required this.buttonText,
+    required this.onSubmit
   });
 
   @override
@@ -70,7 +72,9 @@ class AuthScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ...inputs,
-                
+
+                      SizedBox(height: screenHeight * 0.08),
+                      
                       Center(
                         child: ResponsiveButton(
                           text: buttonText,
