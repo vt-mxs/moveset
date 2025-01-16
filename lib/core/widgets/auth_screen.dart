@@ -77,7 +77,7 @@ class AuthScreen extends StatelessWidget {
                     children: [
                       ...inputs,
 
-                      SizedBox(height: screenHeight * 0.08),
+                      SizedBox(height: screenHeight * 0.06),
                       
                       Center(
                         child: ResponsiveButton(
@@ -103,7 +103,15 @@ class AuthScreen extends StatelessWidget {
 
                       SizedBox(height: screenHeight * 0.05),
 
-                      ...footerWidgets
+                      ...footerWidgets,
+                      
+                      Padding(
+                        padding: EdgeInsets.only(top: screenHeight * 0.07),
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back, size: 60, color: AppColors.mainShowCaseBlue),
+                          onPressed: () => Navigator.pop(context)
+                        ),
+                      )
                     ],
                   ),
                 ),

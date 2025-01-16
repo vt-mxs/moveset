@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
     final double screenHeight = MediaQuery.of(context).size.height;
     
     return AuthScreen(
-      title: 'Olá\nBem vindo de volta!',
+      title: 'Olá\nQue bom te ver de novo!',
       inputs: [
         CustomInputField(label: 'Email'),
                 
