@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/screens/login_screen.dart';
+import 'package:moveset/screens/register_screen.dart';
 import 'package:moveset/screens/welcome_screen.dart';
 
 void main() => runApp(MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.welcome: (_) => const WelcomeScreen(),
         AppRoutes.login: (_) => const LoginScreen(),
-        //'/register': (_) => TODO:implementar tela de registro depois
+        AppRoutes.register: (_) => const RegisterScreen()
       },
     );
   }
