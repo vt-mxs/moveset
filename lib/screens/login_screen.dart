@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_colors.dart';
-import 'package:moveset/core/utils/auth_screen_decoration.dart';
-import 'package:moveset/core/widgets/responsive_button.dart';
+import 'package:moveset/core/widgets/auth_screen.dart';
 import 'package:moveset/core/widgets/custom_input_field.dart';
 import 'package:moveset/core/widgets/responsive_text.dart';
 
@@ -10,9 +9,39 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+    
+    return AuthScreen(
+      title: 'Olá\nBem vindo de volta!',
+      buttonText: 'LOGAR',
+      onSubmit: () =>{},
+
+      inputs: [
+        CustomInputField(label: 'Email'),
+                
+        SizedBox(height: screenHeight * 0.03),
   
+        CustomInputField(label: 'Senha'),
+      ],
+
+      footerWidgets: [
+        Align(
+          alignment: Alignment.centerRight,
+          child: GestureDetector(
+            onTap: () => {print('oi')},
+            child: ResponsiveText(
+              text: 'Esqueceu sua senha?',
+              fontSize: 5,
+              style: TextStyle(
+                color: AppColors.mainGray,
+                decoration: TextDecoration.underline
+              )
+            ),
+          ),
+        )
+      ],
+    );
+  /*
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -115,6 +144,6 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
     );
-  
+  */
   }
 }
