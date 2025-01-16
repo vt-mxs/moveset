@@ -7,6 +7,7 @@ import 'package:moveset/core/widgets/responsive_text.dart';
 class AuthScreen extends StatelessWidget {
   final String title;
   final List<Widget> inputs;
+  final List<Widget> footerWidgets;
   final String buttonText;
   final VoidCallback onSubmit;
 
@@ -15,6 +16,7 @@ class AuthScreen extends StatelessWidget {
     required
     this.title,
     required this.inputs,
+    this.footerWidgets = const [],
     required this.buttonText,
     required this.onSubmit
   });
@@ -96,6 +98,8 @@ class AuthScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+
+                      ...footerWidgets
                     ],
                   ),
                 ),
