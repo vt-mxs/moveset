@@ -34,7 +34,16 @@ class AuthScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: AuthScreenDecoration.defaultBackground,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  const Color.fromARGB(255, 74, 77, 82),
+                  Colors.black87
+                ]
+              ),
+            ),
             
             child: Padding(
               padding: const EdgeInsets.only(top: 100, left: 22),
