@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_colors.dart';
 import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/constants/assets_paths.dart';
-import 'package:moveset/core/utils/auth_screen_decoration.dart';
 import 'package:moveset/core/widgets/responsive_button.dart';
 
 class WelcomeScreen extends StatelessWidget{
@@ -15,7 +14,16 @@ class WelcomeScreen extends StatelessWidget{
         height: double.infinity,
         width: double.infinity,
 
-        decoration: AuthScreenDecoration.defaultBackground,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              const Color.fromARGB(255, 74, 77, 82),
+              Colors.black87
+            ]
+          ),
+        ),
         
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

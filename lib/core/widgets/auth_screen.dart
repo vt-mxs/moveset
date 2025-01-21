@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_colors.dart';
-import 'package:moveset/core/utils/auth_screen_decoration.dart';
 import 'package:moveset/core/widgets/responsive_button.dart';
 import 'package:moveset/core/widgets/responsive_text.dart';
 
