@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1078379351654",
+    "project_id": "moveset-d41d6",
+    "storage_bucket": "moveset-d41d6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078379351654:android:5c8754d478732881fa67a7",
+        "android_client_info": {
+          "package_name": "com.example.moveset"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt2kJ46PLKz4IUS2Q75km3L79QGak0Ycw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
