@@ -90,7 +90,7 @@ class AuthScreen extends StatelessWidget {
                       Center(
                         child: ResponsiveButton(
                           text: buttonText,
-                          onPressed: () =>{},
+                          onPressed: onSubmit,
                 
                           textStyle: TextStyle(
                             color: AppColors.mainIceWhite,
