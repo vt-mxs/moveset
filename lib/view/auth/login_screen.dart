@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moveset/core/constants/app_colors.dart';
 import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/widgets/auth_screen.dart';
 import 'package:moveset/core/widgets/custom_input_field.dart';
