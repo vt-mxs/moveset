@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:moveset/core/utils/response.dart';
 import 'package:moveset/service/auth_service.dart';
 
 class AuthViewmodel with ChangeNotifier {
@@ -7,13 +8,21 @@ class AuthViewmodel with ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  Future<void> register(String name, String email, String password) async {
+  Future<String?> register(String name, String email, String password) async {
     _isLoading = true;
     notifyListeners();
 
-    await _service.register(name, email, password);
+    Response result = await _service.register(name, email, password);
+    
+    if (result.isFailure) {
+      _isLoading = false;
+      notifyListeners();
+      return result.message;
+    }
 
     _isLoading = false;
     notifyListeners();
+
+    return null; // sucesso
   }
 }

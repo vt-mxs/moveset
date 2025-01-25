@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/widgets/auth_screen.dart';
 import 'package:moveset/core/widgets/custom_input_field.dart';
+import 'package:moveset/core/widgets/responsive_text.dart';
 import 'package:moveset/viewmodel/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -41,12 +42,37 @@ class RegisterScreen extends StatelessWidget {
       ],
 
       buttonText: 'REGISTRAR-SE',
-      onSubmit: () async => {
-        await authViewmodel.register(
+      onSubmit: () async {
+        String? result = await authViewmodel.register(
           _nameController.text,
           _emailController.text,
           _passwordController.text
-        )
+        );
+        print(result);
+
+        if(result != null){
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: ResponsiveText(
+                text: result,
+                fontSize: 5,
+              ),
+            )
+            );
+          });
+        }
+        
+        // WidgetsBinding.instance.addPostFrameCallback((_) {
+        //   ScaffoldMessenger.of(context).showSnackBar(
+        //     SnackBar(
+        //       content: ResponsiveText(
+        //         text: result ?? 'Bem vindo ${_nameController.text}',
+        //         fontSize: 5,
+        //       ),
+        //     )
+        //   );
+        // });
       },
     );
   }
