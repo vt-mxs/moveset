@@ -1,29 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/core/constants/app_colors.dart';
+import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/widgets/auth_screen.dart';
 import 'package:moveset/core/widgets/custom_input_field.dart';
 import 'package:moveset/core/widgets/responsive_text.dart';
+import 'package:moveset/viewmodel/auth_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
+    final AuthViewmodel authViewmodel = Provider.of<AuthViewmodel>(context);
     
     return AuthScreen(
       title: 'Olá\nQue bom te ver de novo!',
       inputs: [
-        CustomInputField(label: 'Email'),
+        CustomInputField(
+          label: 'Email',
+          controller: _emailController,
+        ),
                 
         SizedBox(height: screenHeight * 0.03),
   
-        CustomInputField(label: 'Senha', isPassword: true),
+        CustomInputField(
+          label: 'Senha',
+          isPassword: true,
+          controller: _passwordController,
+        ),
       ],
 
       buttonText: 'LOGAR',
-      onSubmit: () =>{},
+      onSubmit: () async {
+        String? result = await authViewmodel.login(
+          _emailController.text,
+          _passwordController.text
+        );
 
+        if(result != null){
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: ResponsiveText(
+                  text: result,
+                  fontSize: 5,
+                ),
+                behavior: SnackBarBehavior.floating,
+                margin: EdgeInsets.only(bottom: screenHeight * 0.7),
+              ),
+            );
+          });
+        }
+        else{
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.pushNamed(context, AppRoutes.home);
+          });
+        }
+      }
+    /*
       footerWidgets: [
         Align(
           alignment: Alignment.centerRight,
@@ -40,110 +79,7 @@ class LoginScreen extends StatelessWidget {
           ),
         )
       ],
+    */
     );
-  /*
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: AuthScreenDecoration.defaultBackground,
-            
-            child: Padding(
-              padding: const EdgeInsets.only(top: 100, left: 22),
-              child: ResponsiveText(
-                text: 'Olá\nBem vindo de volta!',
-                fontSize: 6,
-                align: TextAlign.left,
-                style: TextStyle(
-                  color: AppColors.mainIceWhite,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.mainIceWhite,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                ),
-              ),
-
-              width: double.infinity,
-              height: screenHeight * 0.69,
-              //constraints: BoxConstraints(minHeight: screenHeight * 0.6),
-
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.05,
-                    vertical: screenHeight * 0.05
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomInputField(label: 'Email'),
-                
-                      SizedBox(height: screenHeight * 0.03),
-                
-                      CustomInputField(label: 'Senha'),
-                
-                      SizedBox(height: screenHeight * 0.08),
-                
-                      Center(
-                        child: ResponsiveButton(
-                          text: 'LOGAR',
-                          onPressed: () =>{},
-                
-                          textStyle: TextStyle(
-                            color: AppColors.mainIceWhite,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold
-                          ),
-                          color: AppColors.mainShowCaseBlue,
-                          shadow: [
-                            BoxShadow(
-                              color: Colors.black.withAlpha(90),
-                              spreadRadius: 2,
-                              blurRadius: 6,
-                              offset: Offset(0, 3)
-                            )
-                          ],
-                        ),
-                      ),
-                      
-                      SizedBox(height: screenHeight * 0.05),
-
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () => {print('oi')},
-                          child: ResponsiveText(
-                            text: 'Esqueceu sua senha?',
-                            fontSize: 5,
-                            style: TextStyle(
-                              color: AppColors.mainGray,
-                              decoration: TextDecoration.underline
-                            )
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  */
   }
 }
