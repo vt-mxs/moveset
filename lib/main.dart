@@ -6,6 +6,7 @@ import 'package:moveset/firebase_options.dart';
 import 'package:moveset/view/auth/login_screen.dart';
 import 'package:moveset/view/auth/register_screen.dart';
 import 'package:moveset/view/auth/welcome_screen.dart';
+import 'package:moveset/view/home/home_screen.dart';
 import 'package:moveset/viewmodel/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.welcome,
       routes: {
         AppRoutes.welcome: (_) => const WelcomeScreen(),
-        AppRoutes.login: (_) => const LoginScreen(),
-        AppRoutes.register: (_) => RegisterScreen()
+        AppRoutes.login: (_) => LoginScreen(),
+        AppRoutes.register: (_) => RegisterScreen(),
+        AppRoutes.home : (_) => HomeScreen()
       },
     );
   }
