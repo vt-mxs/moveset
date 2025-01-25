@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/widgets/auth_screen.dart';
 import 'package:moveset/core/widgets/custom_input_field.dart';
 import 'package:moveset/core/widgets/responsive_text.dart';
@@ -48,31 +49,26 @@ class RegisterScreen extends StatelessWidget {
           _emailController.text,
           _passwordController.text
         );
-        print(result);
 
         if(result != null){
           WidgetsBinding.instance.addPostFrameCallback((_) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: ResponsiveText(
-                text: result,
-                fontSize: 5,
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: ResponsiveText(
+                  text: result,
+                  fontSize: 5,
+                ),
+                behavior: SnackBarBehavior.floating,
+                margin: EdgeInsets.only(bottom: screenHeight * 0.7),
               ),
-            )
             );
           });
         }
-        
-        // WidgetsBinding.instance.addPostFrameCallback((_) {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(
-        //       content: ResponsiveText(
-        //         text: result ?? 'Bem vindo ${_nameController.text}',
-        //         fontSize: 5,
-        //       ),
-        //     )
-        //   );
-        // });
+        else{
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if(context.mounted) Navigator.pushNamed(context, AppRoutes.home);
+          });
+        }
       },
     );
   }
