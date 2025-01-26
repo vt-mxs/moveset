@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
         ),
       ],
 
-      buttonText: 'LOGAR',
+      buttonText: authViewmodel.isLoading ? 'CARREGANDO...' : 'LOGIN',
       onSubmit: () async {
         String result = await authViewmodel.login(
           _emailController.text,
@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
             );
           });
         }
-      }
+      },
     /*
       footerWidgets: [
         Align(

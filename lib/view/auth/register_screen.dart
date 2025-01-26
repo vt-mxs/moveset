@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
         ),
       ],
 
-      buttonText: 'REGISTRAR-SE',
+      buttonText: authViewmodel.isLoading ? 'CARREGANDO...' : 'LOGIN',
       
       onSubmit: () async {
         String result = await authViewmodel.register(
@@ -71,6 +71,12 @@ class RegisterScreen extends StatelessWidget {
           });
         }
       },
+      
+      footerWidgets: authViewmodel.isLoading ?
+        [
+          
+        ]
+        : []
     );
   }
 }
