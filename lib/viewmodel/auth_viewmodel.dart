@@ -14,8 +14,8 @@ class AuthViewmodel with ChangeNotifier {
 
     Response result = await _service.register(name, email, password);
 
-    notifyListeners();
     isLoading = false;
+    notifyListeners();
 
     if (result.isFailure) {
       return result.message ?? unknownError;
