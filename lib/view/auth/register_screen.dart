@@ -43,14 +43,20 @@ class RegisterScreen extends StatelessWidget {
       ],
 
       buttonText: 'REGISTRAR-SE',
+      
       onSubmit: () async {
-        String? result = await authViewmodel.register(
+        String result = await authViewmodel.register(
           _nameController.text,
           _emailController.text,
           _passwordController.text
         );
 
-        if(result != null){
+        if(result == AuthViewmodel.success){
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if(context.mounted) Navigator.pushNamed(context, AppRoutes.home);
+          });
+        }
+        else{
           WidgetsBinding.instance.addPostFrameCallback((_) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -62,11 +68,6 @@ class RegisterScreen extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: screenHeight * 0.7),
               ),
             );
-          });
-        }
-        else{
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if(context.mounted) Navigator.pushNamed(context, AppRoutes.home);
           });
         }
       },
