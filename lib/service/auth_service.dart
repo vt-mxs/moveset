@@ -20,7 +20,6 @@ class AuthService {
       case 'invalid-credential':
         errorMsg = 'Usuário não encontrado, verifique o email ou senha';
         break;
-
       default:
         errorMsg = 'Problemas técnicos, volte mais tarde';
     }
@@ -66,8 +65,6 @@ class AuthService {
       return Response.success();
     } on FirebaseAuthException catch (e) {
       return Response.failure(_showOperationMsgError(e));
-    } catch (e) {
-      return Response.failure('Erro inesperado, tente novamente mais tarde');
     }
   }
 }
