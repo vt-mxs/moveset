@@ -53,7 +53,7 @@ class RegisterScreen extends StatelessWidget {
 
         if(result == AuthViewmodel.success){
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            if(context.mounted) Navigator.pushNamed(context, AppRoutes.home);
+            Navigator.pushNamed(context, AppRoutes.home);
           });
         }
         else{
@@ -70,13 +70,7 @@ class RegisterScreen extends StatelessWidget {
             );
           });
         }
-      },
-      
-      footerWidgets: authViewmodel.isLoading ?
-        [
-          
-        ]
-        : []
+      }
     );
   }
 }
