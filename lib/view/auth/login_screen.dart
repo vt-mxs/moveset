@@ -36,12 +36,17 @@ class LoginScreen extends StatelessWidget {
 
       buttonText: 'LOGAR',
       onSubmit: () async {
-        String? result = await authViewmodel.login(
+        String result = await authViewmodel.login(
           _emailController.text,
           _passwordController.text
         );
 
-        if(result != null){
+        if(result == AuthViewmodel.success){
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.pushNamed(context, AppRoutes.home);
+          });
+        }
+        else{
           WidgetsBinding.instance.addPostFrameCallback((_) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -53,11 +58,6 @@ class LoginScreen extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: screenHeight * 0.7),
               ),
             );
-          });
-        }
-        else{
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.pushNamed(context, AppRoutes.home);
           });
         }
       }
