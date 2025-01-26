@@ -17,6 +17,10 @@ class AuthService {
       case 'network-request-failed':
         errorMsg = 'Erro de rede, verifique sua conexão com a internet';
         break;
+      case 'invalid-credential':
+        errorMsg = 'Usuário não encontrado, verifique o email ou senha';
+        break;
+
       default:
         errorMsg = 'Problemas técnicos, volte mais tarde';
     }
@@ -57,12 +61,9 @@ class AuthService {
     if (passwordResult.isFailure) return passwordResult;
 
     try {
-      UserCredential loginResult = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
 
-      return (loginResult.user != null)
-          ? Response.success()
-          : Response.failure('Credenciais inválidas');
+      return Response.success();
     } on FirebaseAuthException catch (e) {
       return Response.failure(_showOperationMsgError(e));
     } catch (e) {
