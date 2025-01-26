@@ -8,6 +8,21 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  String _showOperationMsgError(FirebaseAuthException e) {
+    String errorMsg;
+    switch (e.code) {
+      case 'email-already-in-use':
+        errorMsg = 'Email enserido já esta cadastrado';
+        break;
+      case 'network-request-failed':
+        errorMsg = 'Erro de rede, verifique sua conexão com a internet';
+        break;
+      default:
+        errorMsg = 'Problemas técnicos, volte mais tarde';
+    }
+    return errorMsg;
+  }
+
   Future<Response> register(String name, String email, String password) async {
     Response nameResult = Validator.validateName(name);
     Response emailResult = Validator.validateEmail(email);
@@ -19,24 +34,18 @@ class AuthService {
 
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password
-      );
-      
+          email: email, password: password);
+
       String uid = result.user!.uid;
 
-      await _firestore.collection('users').doc(uid).set({
-        'id': uid,
-        'name': name,
-        'email': email
-      });
+      await _firestore
+          .collection('users')
+          .doc(uid)
+          .set({'id': uid, 'name': name, 'email': email});
 
       return Response.success();
-    } on FirebaseAuthException catch(e) {
-      if(e.code == 'email-already-in-use'){
-        return Response.failure('Email já cadastrado');
-      }
-      return Response.failure('Erro inesperado, volte mais tarde');
+    } on FirebaseAuthException catch (e) {
+      return Response.failure(_showOperationMsgError(e));
     }
   }
 
@@ -49,16 +58,14 @@ class AuthService {
 
     try {
       UserCredential loginResult = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password
-      );
+          email: email, password: password);
 
-      return (loginResult.user != null) ?
-        Response.success() : Response.failure('Credenciais inválidas');
-    
+      return (loginResult.user != null)
+          ? Response.success()
+          : Response.failure('Credenciais inválidas');
     } on FirebaseAuthException catch (e) {
-      return Response.failure(e.code);
-    }catch(e){
+      return Response.failure(_showOperationMsgError(e));
+    } catch (e) {
       return Response.failure('Erro inesperado, tente novamente mais tarde');
     }
   }
