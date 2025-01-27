@@ -1,8 +1,8 @@
 class Response {
-  String? message;
+  final String message;
   final bool _success;
 
-  Response.success() : _success = true;
+  Response.success({this.message = ''}) : _success = true;
 
   Response.failure(this.message) : _success = false;
 
