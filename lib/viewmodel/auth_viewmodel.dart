@@ -17,11 +17,7 @@ class AuthViewmodel with ChangeNotifier {
     isLoading = false;
     notifyListeners();
 
-    if (result.isFailure) {
-      return result.message ?? unknownError;
-    }
-
-    return success;
+    return result.isFailure ? result.message : success;
   }
 
   Future<String> login(String email, String password) async {
@@ -29,14 +25,10 @@ class AuthViewmodel with ChangeNotifier {
     notifyListeners();
 
     Response result = await _service.login(email, password);
-    
+
     isLoading = false;
     notifyListeners();
 
-    if (result.isFailure) {
-      return result.message ?? unknownError;
-    }
-
-    return success;
+    return result.isFailure ? result.message : success;
   }
 }

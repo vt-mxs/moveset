@@ -53,7 +53,11 @@ class RegisterScreen extends StatelessWidget {
 
         if(result == AuthViewmodel.success){
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.pushNamed(context, AppRoutes.home);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              AppRoutes.home,
+              (Route<dynamic> route) => false
+            );
           });
         }
         else{

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +23,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewmodel())
       ],
-      child: MyApp(),
+      child: const MyApp(),
     )
   ));
   
@@ -34,12 +35,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: AppRoutes.welcome,
+      initialRoute: FirebaseAuth.instance.currentUser != null ? AppRoutes.home : AppRoutes.welcome,
       routes: {
         AppRoutes.welcome: (_) => const WelcomeScreen(),
         AppRoutes.login: (_) => LoginScreen(),
         AppRoutes.register: (_) => RegisterScreen(),
-        AppRoutes.home : (_) => HomeScreen()
+        AppRoutes.home : (_) => const HomeScreen()
       },
     );
   }
