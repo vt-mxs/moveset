@@ -23,7 +23,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewmodel())
       ],
-      child: MyApp(),
+      child: const MyApp(),
     )
   ));
   
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.welcome: (_) => const WelcomeScreen(),
         AppRoutes.login: (_) => LoginScreen(),
         AppRoutes.register: (_) => RegisterScreen(),
-        AppRoutes.home : (_) => HomeScreen()
+        AppRoutes.home : (_) => const HomeScreen()
       },
     );
   }
