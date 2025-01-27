@@ -18,7 +18,7 @@ class AuthViewmodel with ChangeNotifier {
     notifyListeners();
 
     if (result.isFailure) {
-      return result.message ?? unknownError;
+      return result.message;
     }
 
     return success;
@@ -34,7 +34,7 @@ class AuthViewmodel with ChangeNotifier {
     notifyListeners();
 
     if (result.isFailure) {
-      return result.message ?? unknownError;
+      return result.message;
     }
 
     return success;
