@@ -37,14 +37,18 @@ class AuthService {
 
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password
+      );
 
       String uid = result.user!.uid;
 
-      await _firestore
-          .collection('users')
-          .doc(uid)
-          .set({'id': uid, 'name': name, 'email': email});
+      await _firestore.collection('users').doc(uid)
+        .set({
+          'id': uid,
+          'name': name,
+          'email': email
+        });
 
       return Response.success();
     } on FirebaseAuthException catch (e) {
