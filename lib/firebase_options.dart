@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:1078379351654:android:5c8754d478732881fa67a7',
     messagingSenderId: '1078379351654',
     projectId: 'moveset-d41d6',
+    databaseURL: 'https://moveset-d41d6-default-rtdb.firebaseio.com',
     storageBucket: 'moveset-d41d6.firebasestorage.app',
   );
 
@@ -62,7 +63,9 @@ class DefaultFirebaseOptions {
     appId: '1:1078379351654:ios:f82a8631c816dc5efa67a7',
     messagingSenderId: '1078379351654',
     projectId: 'moveset-d41d6',
+    databaseURL: 'https://moveset-d41d6-default-rtdb.firebaseio.com',
     storageBucket: 'moveset-d41d6.firebasestorage.app',
     iosBundleId: 'com.example.moveset',
   );
+
 }
