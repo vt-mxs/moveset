@@ -48,23 +48,21 @@ class LoginScreen extends StatelessWidget {
               AppRoutes.home,
               (Route<dynamic> route) => false
             );
-            //Navigator.pushNamed(context, AppRoutes.home);
           });
         }
-        else{
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: ResponsiveText(
-                  text: result,
-                  fontSize: 5,
-                ),
-                behavior: SnackBarBehavior.floating,
-                margin: EdgeInsets.only(bottom: screenHeight * 0.7),
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: ResponsiveText(
+                text: result,
+                fontSize: 5,
               ),
-            );
-          });
-        }
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.only(bottom: screenHeight * 0.5),
+            ),
+          );
+        }); 
       },
     /*
       footerWidgets: [
