@@ -3,7 +3,8 @@ class Exercise {
   final String name;
   final int sets;
   final int reps;
-  final String videoPath;
+  //TODO: remover '?' depois
+  final String? videoPath;
 
   Exercise({
     required this.id,
