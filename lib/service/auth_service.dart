@@ -9,21 +9,19 @@ class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String _showOperationMsgError(FirebaseAuthException e) {
-    String errorMsg;
     switch (e.code) {
       case 'email-already-in-use':
-        errorMsg = 'Email enserido já esta cadastrado';
-        break;
+        return 'Email enserido já esta cadastrado';
+
       case 'network-request-failed':
-        errorMsg = 'Erro de rede, verifique sua conexão com a internet';
-        break;
+        return 'Erro de rede, verifique sua conexão com a internet';
+
       case 'invalid-credential':
-        errorMsg = 'Usuário não encontrado, verifique o email ou senha';
-        break;
+        return 'Usuário não encontrado, verifique o email ou senha';
+
       default:
-        errorMsg = 'Problemas técnicos, volte mais tarde';
+        return 'Problemas técnicos, volte mais tarde';
     }
-    return errorMsg;
   }
 
   Future<Response> register(String name, String email, String password) async {
