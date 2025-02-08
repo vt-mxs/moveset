@@ -16,8 +16,8 @@ class Workout {
       id: id,
       name: map['name'],
       phases: (map['phases'] as List<dynamic>?)
-        ?.map((phaseMap) => Phase.fromMap(phaseMap, phaseMap['id']))
-        .toList() ?? []
+              ?.map((phaseMap) => Phase.fromMap(phaseMap, phaseMap['id']))
+              .toList() ?? []
     );
   }
 
