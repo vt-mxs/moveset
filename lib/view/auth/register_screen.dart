@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
         ),
       ],
 
-      buttonText: authViewmodel.isLoading ? 'CARREGANDO...' : 'LOGIN',
+      buttonText: authViewmodel.isLoading ? 'CARREGANDO...' : 'REGISTRAR-SE',
       
       onSubmit: () async {
         String result = await authViewmodel.register(
@@ -60,20 +60,19 @@ class RegisterScreen extends StatelessWidget {
             );
           });
         }
-        else{
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: ResponsiveText(
-                  text: result,
-                  fontSize: 5,
-                ),
-                behavior: SnackBarBehavior.floating,
-                margin: EdgeInsets.only(bottom: screenHeight * 0.7),
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: ResponsiveText(
+                text: result,
+                fontSize: 5,
               ),
-            );
-          });
-        }
+              behavior: SnackBarBehavior.floating,
+              margin: EdgeInsets.only(bottom: screenHeight * 0.5),
+            ),
+          );
+        });
       }
     );
   }

@@ -9,6 +9,7 @@ import 'package:moveset/view/auth/register_screen.dart';
 import 'package:moveset/view/auth/welcome_screen.dart';
 import 'package:moveset/view/home/home_screen.dart';
 import 'package:moveset/viewmodel/auth_viewmodel.dart';
+import 'package:moveset/viewmodel/workout_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -16,17 +17,17 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, DeviceOrientation.portraitDown
-  ]).then((_) => runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthViewmodel())
-      ],
-      child: const MyApp(),
-    )
+  ]);
+
+  runApp(MultiProvider(      
+    providers: [
+      ChangeNotifierProvider(create: (_) => AuthViewmodel()),
+      ChangeNotifierProvider(create: (_) => WorkoutViewModel())
+    ],
+    child: const MyApp(),
   ));
-  
 }
 
 class MyApp extends StatelessWidget {
@@ -35,12 +36,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: FirebaseAuth.instance.currentUser != null ? AppRoutes.home : AppRoutes.welcome,
+      initialRoute: FirebaseAuth.instance.currentUser != null
+          ? AppRoutes.home
+          : AppRoutes.welcome,
       routes: {
-        AppRoutes.welcome: (_) => const WelcomeScreen(),
+        AppRoutes.welcome: (_) => WelcomeScreen(),
         AppRoutes.login: (_) => LoginScreen(),
         AppRoutes.register: (_) => RegisterScreen(),
-        AppRoutes.home : (_) => const HomeScreen()
+        AppRoutes.home: (_) => HomeScreen()
       },
     );
   }

@@ -4,7 +4,7 @@ import 'package:moveset/service/auth_service.dart';
 
 class AuthViewmodel with ChangeNotifier {
   final AuthService _service = AuthService();
-  static const String success = 'succes';
+  static const String success = 'Bem vindo';
   static const String unknownError = 'Problemas técnicos, volte mais tarde';
   bool isLoading = false;
 
