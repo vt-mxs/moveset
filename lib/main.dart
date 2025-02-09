@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,25 +9,25 @@ import 'package:moveset/view/auth/register_screen.dart';
 import 'package:moveset/view/auth/welcome_screen.dart';
 import 'package:moveset/view/home/home_screen.dart';
 import 'package:moveset/viewmodel/auth_viewmodel.dart';
+import 'package:moveset/viewmodel/workout_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  FirebaseFirestore.instance.settings = Settings(persistenceEnabled: true);
 
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, DeviceOrientation.portraitDown
-  ]).then((_) => runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthViewmodel())
-      ],
-      child: const MyApp(),
-    )
+  ]);
+
+  runApp(MultiProvider(      
+    providers: [
+      ChangeNotifierProvider(create: (_) => AuthViewmodel()),
+      ChangeNotifierProvider(create: (_) => WorkoutViewModel())
+    ],
+    child: const MyApp(),
   ));
-  
 }
 
 class MyApp extends StatelessWidget {
@@ -37,12 +36,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: FirebaseAuth.instance.currentUser != null ? AppRoutes.home : AppRoutes.welcome,
+      initialRoute: FirebaseAuth.instance.currentUser != null
+          ? AppRoutes.home
+          : AppRoutes.welcome,
       routes: {
-        AppRoutes.welcome: (_) => const WelcomeScreen(),
+        AppRoutes.welcome: (_) => WelcomeScreen(),
         AppRoutes.login: (_) => LoginScreen(),
         AppRoutes.register: (_) => RegisterScreen(),
-        AppRoutes.home : (_) => const HomeScreen()
+        AppRoutes.home: (_) => HomeScreen()
       },
     );
   }
