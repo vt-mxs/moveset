@@ -25,7 +25,6 @@ class WorkoutService {
       }
 
     }catch(e){
-      print(e);
       querySnapshot = await FirebaseFirestore.instance
         .collection('workouts')
         .get(const GetOptions(source: Source.server));

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moveset/core/constants/app_colors.dart';
+import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/widgets/responsive_text.dart';
+import 'package:moveset/model/workout.dart';
 import 'package:moveset/viewmodel/workout_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -60,34 +62,46 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            /*ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(40),
-                bottomRight: Radius.circular(40)
-              ),
-              child: Container(
-                height: screenHeight * 0.25,
-                decoration: BoxDecoration(
-                  
-                  color: AppColors.mainIceWhite
-                ),
-              
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 100, left: 22),
-                  child: ResponsiveText(
-                    text: ' AAAAAA',
-                    fontSize: 6,
-                    align: TextAlign.left,
-                    style: TextStyle(
-                      color: AppColors.mainGray,
-                      fontWeight: FontWeight.bold,
-                    ),
+
+            Consumer<WorkoutViewModel>(
+              builder: (context, workoutViewModel, child) {
+                if(workoutViewModel.isLoading){
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: AppColors.mainShowCaseBlue,
+                    )
+                  );
+                }
+
+                return Container(
+                  margin: EdgeInsets.only(top: screenHeight * 0.3),
+                  color: AppColors.mainIceWhite,
+                  child: ListView.builder(
+                    itemCount: workoutViewModel.workouts.length,
+                    itemBuilder: (context, index){
+                      final Workout workout = workoutViewModel.workouts[index];
+                      return Card(
+                        elevation: 4,
+                        margin: EdgeInsets.all(screenHeight * 0.02),
+                        child: ListTile(
+                          title: ResponsiveText(
+                            text: workout.name,
+                            fontSize: 5
+                          ),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context, AppRoutes.muscleUpWorkout
+                            );
+                          },
+                        ),
+                      );
+                    }
                   ),
-                ),
-              ),
-            ),
+                );
+              }
+            )
 
-
+            /*
             Align(
               alignment: Alignment.bottomCenter,
               child: Consumer<WorkoutViewModel>(
