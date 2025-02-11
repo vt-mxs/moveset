@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moveset/core/constants/app_colors.dart';
+import 'package:moveset/core/constants/app_routes.dart';
 import 'package:moveset/core/widgets/responsive_text.dart';
 import 'package:moveset/model/workout.dart';
 import 'package:moveset/viewmodel/workout_viewmodel.dart';
@@ -82,18 +83,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       return Card(
                         elevation: 4,
                         margin: EdgeInsets.all(screenHeight * 0.02),
-                          
                         child: ListTile(
                           title: ResponsiveText(
                             text: workout.name,
                             fontSize: 5
                           ),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context, AppRoutes.muscleUpWorkout
+                            );
+                          },
                         ),
                       );
                     }
                   ),
                 );
-              },
+              }
             )
 
             /*

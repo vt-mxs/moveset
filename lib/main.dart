@@ -8,6 +8,7 @@ import 'package:moveset/view/auth/login_screen.dart';
 import 'package:moveset/view/auth/register_screen.dart';
 import 'package:moveset/view/auth/welcome_screen.dart';
 import 'package:moveset/view/home/home_screen.dart';
+import 'package:moveset/view/home/workout_screens/muscle_up_workout_screen.dart';
 import 'package:moveset/viewmodel/auth_viewmodel.dart';
 import 'package:moveset/viewmodel/workout_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -40,10 +41,14 @@ class MyApp extends StatelessWidget {
           ? AppRoutes.home
           : AppRoutes.welcome,
       routes: {
+        // páginas pras telas de auth/home
         AppRoutes.welcome: (_) => WelcomeScreen(),
         AppRoutes.login: (_) => LoginScreen(),
         AppRoutes.register: (_) => RegisterScreen(),
-        AppRoutes.home: (_) => HomeScreen()
+        AppRoutes.home: (_) => HomeScreen(),
+        
+        // páginas pras telas de workout
+        AppRoutes.muscleUpWorkout: (_) => MuscleUpWorkoutScreen()
       },
     );
   }
