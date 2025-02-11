@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moveset/model/workout.dart';
 
-class MuscleUpWorkoutScreen extends StatefulWidget {
-  const MuscleUpWorkoutScreen({super.key});
+class MuscleUpWorkoutScreen extends StatelessWidget {
+  final Workout workout;
+  const MuscleUpWorkoutScreen({super.key, required this.workout});
 
-  @override
-  State<MuscleUpWorkoutScreen> createState() => _MuscleUpWorkoutScreenState();
-}
-
-class _MuscleUpWorkoutScreenState extends State<MuscleUpWorkoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
