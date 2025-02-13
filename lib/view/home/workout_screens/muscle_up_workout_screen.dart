@@ -13,7 +13,6 @@ class MuscleUpWorkoutScreen extends StatelessWidget {
       body: Stack(
         children: [
           RoundedHeader(
-            responsiveHeight: 0.3,
             title: 'Muscle Up'
           )
         ],

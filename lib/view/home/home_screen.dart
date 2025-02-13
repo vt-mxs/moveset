@@ -53,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Stack(
           children:[
             RoundedHeader(
-              responsiveHeight: 0.3,
               title: 'Teste'
             ),
 

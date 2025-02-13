@@ -8,7 +8,7 @@ class RoundedHeader extends StatelessWidget {
 
   const RoundedHeader({
     super.key,
-    required this.responsiveHeight,
+    this.responsiveHeight = 0.3,
     required this.title
   });
 
