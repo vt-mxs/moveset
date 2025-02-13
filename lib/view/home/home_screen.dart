@@ -53,14 +53,22 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Scaffold(
         key: _scaffoldKey,
-        drawer: Drawer(),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              // DrawerHeader(
+              //   decoration: ,
+              // )
+            ],
+          ),
+        ),
         body: Stack(
           children:[
             RoundedHeader(
               extras: [
                 Align(
                   alignment: Alignment.topLeft,
-                  
                   child: IconButton(
                     icon: Icon(
                       Icons.menu,
