@@ -5,11 +5,13 @@ import 'package:moveset/core/widgets/responsive_text.dart';
 class RoundedHeader extends StatelessWidget {
   final double responsiveHeight;
   final String title;
+  final List<Widget> extras;
 
   const RoundedHeader({
     super.key,
     this.responsiveHeight = 0.3,
-    required this.title
+    required this.title,
+    this.extras = const []
   });
 
   @override
@@ -26,19 +28,22 @@ class RoundedHeader extends StatelessWidget {
           bottomRight: Radius.circular(100)
         )
       ),
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: 100
-        ),
-        child: ResponsiveText(
-          text: title,
-          fontSize: 5,
-          align: TextAlign.center,
-          style: TextStyle(
-            color: AppColors.mainIceWhite,
-            fontWeight: FontWeight.bold
+      child: Stack(
+        children: [
+          ...extras,
+
+          Center(
+            child: ResponsiveText(
+              text: title,
+              fontSize: 5,
+              align: TextAlign.center,
+              style: TextStyle(
+                color: AppColors.mainIceWhite,
+                fontWeight: FontWeight.bold
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
