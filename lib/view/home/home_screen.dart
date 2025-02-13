@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:moveset/core/constants/app_colors.dart';
 import 'package:moveset/core/widgets/responsive_text.dart';
 import 'package:moveset/model/workout.dart';
+import 'package:moveset/view/home/home_widgets/rounded_header.dart';
 import 'package:moveset/view/home/workout_screens/muscle_up_workout_screen.dart';
 import 'package:moveset/viewmodel/workout_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final Map<String, Widget Function(Workout)> workoutScreens = {
+    'Muscle Up': (workout) => MuscleUpWorkoutScreen(workout: workout)
+  };
 
   @override
   void initState() {
@@ -22,6 +26,17 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_)  {
       context.read<WorkoutViewModel>().fetchWorkouts();
     });
+  }
+
+  PageRouteBuilder _fadeAnimationTransition(RoutePageBuilder pageBuilder){
+    return PageRouteBuilder(
+      pageBuilder: pageBuilder,
+      transitionDuration: Durations.medium4,
+      transitionsBuilder:(context, animation, secondAnimation, child) => FadeTransition(
+        opacity: animation,
+        child: child,
+      )
+    );
   }
 
   @override
@@ -37,30 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         body: Stack(
           children:[
-            Container(
-              width: double.infinity,
-              height: screenHeight * 0.3,
-              decoration: BoxDecoration(
-                color: AppColors.mainGray,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(100),
-                  bottomRight: Radius.circular(100)
-                )
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: 100
-                ),
-                child: ResponsiveText(
-                  text: 'Teste',
-                  fontSize: 5,
-                  align: TextAlign.center,
-                  style: TextStyle(
-                    color: AppColors.mainIceWhite,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
+            RoundedHeader(
+              responsiveHeight: 0.3,
+              title: 'Teste'
             ),
 
             Consumer<WorkoutViewModel>(
@@ -91,8 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => MuscleUpWorkoutScreen(workout: workout)
+                              _fadeAnimationTransition(
+                                (context, animation, secondAnimation) => workoutScreens[workout.name]!(workout)
                               )
                             );
                           },
@@ -102,39 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               }
-            )
-
-            /*
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Consumer<WorkoutViewModel>(
-                builder: (context, workoutViewModel, widget) {
-                  if(workoutViewModel.isLoading) return Center(child: CircularProgressIndicator());
-              
-                  return Container(
-                    margin: EdgeInsets.only(top: screenHeight * 0.3),
-                    color: AppColors.mainGray,
-                    child: ListView.builder(
-                      itemCount: workoutViewModel.workouts.length,
-                      itemBuilder: (context, index) {
-                        final Workout workout = workoutViewModel.workouts[index];
-                        return Card(
-                          elevation: 4,
-                          margin: EdgeInsets.all(screenHeight * 0.02),
-                          
-                          child: ListTile(
-                            title: ResponsiveText(
-                              text: workout.name,
-                              fontSize: 5
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                }
-              ),
-            ),*/  
+            )  
           ]
         )
       ),

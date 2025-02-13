@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moveset/model/workout.dart';
+import 'package:moveset/view/home/home_widgets/rounded_header.dart';
 
 class MuscleUpWorkoutScreen extends StatelessWidget {
   final Workout workout;
@@ -7,9 +8,15 @@ class MuscleUpWorkoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Teste'),
+      body: Stack(
+        children: [
+          RoundedHeader(
+            responsiveHeight: 0.3,
+            title: 'Muscle Up'
+          )
+        ],
       ),
     );
   }
