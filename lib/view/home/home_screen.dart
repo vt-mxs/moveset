@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Map<String, Widget Function(Workout)> workoutScreens = {
     'Muscle Up': (workout) => MuscleUpWorkoutScreen(workout: workout)
   };
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   PageRouteBuilder _fadeAnimationTransition(RoutePageBuilder pageBuilder){
     return PageRouteBuilder(
       pageBuilder: pageBuilder,
-      transitionDuration: Durations.medium4,
+      transitionDuration: Durations.long1,
       transitionsBuilder:(context, animation, secondAnimation, child) => FadeTransition(
         opacity: animation,
         child: child,
@@ -42,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-
+    final double screenWidth = MediaQuery.of(context).size.width;
+    
     // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
@@ -50,9 +52,28 @@ class _HomeScreenState extends State<HomeScreen> {
         return false;
       },
       child: Scaffold(
+        key: _scaffoldKey,
+        drawer: Drawer(),
         body: Stack(
           children:[
             RoundedHeader(
+              extras: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      size: screenWidth * 0.11,
+                    ),
+                    padding: EdgeInsets.only(top: 40, left: 20),
+                    color: AppColors.mainIceWhite,
+                    onPressed: () {
+                      _scaffoldKey.currentState?.openDrawer();
+                    },
+                  ),
+                )
+              ],
               title: 'Teste'
             ),
 
@@ -60,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, workoutViewModel, child) {
                 if(workoutViewModel.isLoading){
                   return Center(
-                    child: CircularProgressIndicator(
+                    child: const CircularProgressIndicator(
                       backgroundColor: AppColors.mainShowCaseBlue,
                     )
                   );
