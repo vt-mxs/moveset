@@ -43,15 +43,15 @@ dependencies:
   provider: ^6.1.2
 
 flutter_native_splash:
-  image: "assets/moveset-logo.png"
+  image: "assets/imgs/moveset-logo.png"
   color: "#2C2C2C"
 
 flutter_launcher_icons:
   android: "launcher_icon"
-  image_path: "assets/moveset-logo.png"
+  image_path: "assets/imgs/moveset-logo.png"
   min_sdk_android: 24
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/moveset-logo.png"
+  adaptive_icon_foreground: "assets/imgs/moveset-logo.png"
 
 dev_dependencies:
   flutter_test:
@@ -70,7 +70,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/welcome-img.png
+    - assets/imgs/welcome-img.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
